@@ -12,5 +12,5 @@ CREATE TABLE flashcard (
     flashcard_category_id BIGINT,
     front_text VARCHAR(255) NOT NULL,
     back_text VARCHAR(255) NOT NULL,
-    FOREIGN KEY (category_id) REFERENCES flashcard_category(id)
+    FOREIGN KEY (flashcard_category_id) REFERENCES flashcard_category(id)
 );
