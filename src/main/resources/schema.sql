@@ -9,7 +9,7 @@ CREATE TABLE flashcard_category (
 
 CREATE TABLE flashcard (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    category_id BIGINT,
+    flashcard_category_id BIGINT,
     front_text VARCHAR(255) NOT NULL,
     back_text VARCHAR(255) NOT NULL,
     FOREIGN KEY (category_id) REFERENCES flashcard_category(id)
