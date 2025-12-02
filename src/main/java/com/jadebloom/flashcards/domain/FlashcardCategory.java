@@ -6,6 +6,11 @@ public class FlashcardCategory {
 
     private String name;
 
+    public FlashcardCategory(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public FlashcardCategory(String name) {
         this.name = name;
     }
@@ -42,6 +47,10 @@ public class FlashcardCategory {
         }
 
         FlashcardCategory flashcardCategory = (FlashcardCategory) o;
+
+        if (id == null || flashcardCategory.getId() == null) {
+            return false;
+        }
 
         return id == flashcardCategory.getId();
     }
