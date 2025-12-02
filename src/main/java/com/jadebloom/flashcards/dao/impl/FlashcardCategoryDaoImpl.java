@@ -87,7 +87,9 @@ public class FlashcardCategoryDaoImpl implements FlashcardCategoryDao {
     public static class FlashcardCategoryRowMapper implements RowMapper<FlashcardCategory> {
         @Override
         public FlashcardCategory mapRow(ResultSet rs, int rowNum) throws SQLException {
-            FlashcardCategory category = new FlashcardCategory(rs.getString(2));
+            FlashcardCategory category = new FlashcardCategory(
+                    rs.getLong(1),
+                    rs.getString(2));
 
             return category;
         }

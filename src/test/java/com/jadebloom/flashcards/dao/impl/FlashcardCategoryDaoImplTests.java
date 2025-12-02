@@ -39,7 +39,7 @@ public class FlashcardCategoryDaoImplTests {
     }
 
     @Test
-    public void testThatFindManyGeneratesTheCorrectSql() {
+    public void testThatFindAllGeneratesTheCorrectSql() {
         underTest.findAll();
 
         verify(jdbcTemplate).query(
@@ -70,20 +70,21 @@ public class FlashcardCategoryDaoImplTests {
     }
 
     @Test
+    public void testThatDeleteAllGeneratesTheCorrectSql() {
+        underTest.deleteAll();
+
+        String SQL = "DELETE FROM flashcard_category";
+
+        verify(jdbcTemplate).update(eq(SQL));
+    }
+
+    @Test
     public void testThatDeleteOneGeneratesTheCorrectSql() {
         underTest.delete(1L);
 
         verify(jdbcTemplate).update(
                 eq("DELETE FROM flashcard_category WHERE id = ?"),
                 eq(1L));
-    }
-
-    @Test
-    public void testThatDeleteManyGeneratesTheCorrectSql() {
-        underTest.deleteAll();
-
-        verify(jdbcTemplate).update(
-                eq("DELETE FROM flashcard_category"));
     }
 
 }

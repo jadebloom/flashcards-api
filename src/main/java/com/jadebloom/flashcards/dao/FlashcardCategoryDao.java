@@ -6,6 +6,7 @@ import java.util.Optional;
 import com.jadebloom.flashcards.domain.FlashcardCategory;
 
 public interface FlashcardCategoryDao {
+
     public Long create(FlashcardCategory category);
 
     public List<FlashcardCategory> findAll();
@@ -14,7 +15,8 @@ public interface FlashcardCategoryDao {
 
     public void update(Long id, FlashcardCategory flashcardCategory);
 
+    public int deleteAll();
+
     public void delete(Long id);
 
-    public int deleteAll();
 }

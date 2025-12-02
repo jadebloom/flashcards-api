@@ -31,22 +31,18 @@ public class FlashcardCategoryDaoImplIntegrationTests {
     }
 
     @Test
-    public void testThatMultipleFlashcardCategoriesCanBeCreatedAndFound() {
+    public void testThatMultipleFlashcardCategoriesCanBeCreatedCorrectly() {
         FlashcardCategory fc1 = TestDaoUtils.createTestFlashcardCategory();
         FlashcardCategory fc2 = TestDaoUtils.createTestFlashcardCategory();
         FlashcardCategory fc3 = TestDaoUtils.createTestFlashcardCategory();
 
-        Long id1 = underTest.create(fc1);
-        Long id2 = underTest.create(fc2);
-        Long id3 = underTest.create(fc3);
-
-        fc1.setId(id1);
-        fc2.setId(id2);
-        fc3.setId(id3);
+        fc1.setId(underTest.create(fc1));
+        fc2.setId(underTest.create(fc2));
+        fc3.setId(underTest.create(fc3));
 
         List<FlashcardCategory> flashcardCategories = underTest.findAll();
 
-        assertAll("Assert that three created flashcard categories are found and matched",
+        assertAll("Assert that multiple created flashcard categories can be created correctly",
                 () -> assertEquals(3, flashcardCategories.size()),
                 () -> assertTrue(flashcardCategories.contains(fc1)),
                 () -> assertTrue(flashcardCategories.contains(fc2)),
@@ -54,7 +50,7 @@ public class FlashcardCategoryDaoImplIntegrationTests {
     }
 
     @Test
-    public void testThatFlashcardCategoryCanBeCreatedAndFound() {
+    public void testThatFlashcardCategoryCanBeCreatedCorrectly() {
         FlashcardCategory flashcardCategory = TestDaoUtils.createTestFlashcardCategory();
 
         Long id = underTest.create(flashcardCategory);
@@ -63,13 +59,13 @@ public class FlashcardCategoryDaoImplIntegrationTests {
 
         Optional<FlashcardCategory> foundFlashcardCategory = underTest.findOne(id);
 
-        assertAll("Assert that created flashcard category is found and matched",
+        assertAll("Assert that a flashcard category can be created correctly",
                 () -> assertTrue(foundFlashcardCategory.isPresent()),
                 () -> assertEquals(flashcardCategory, foundFlashcardCategory.get()));
     }
 
     @Test
-    public void testThatFlashcardCategoryCanBeUpdated() {
+    public void testThatFlashcardCategoryCanBeUpdatedCorrectly() {
         FlashcardCategory flashcardCategory = TestDaoUtils.createTestFlashcardCategory();
 
         Long id = underTest.create(flashcardCategory);
@@ -81,43 +77,13 @@ public class FlashcardCategoryDaoImplIntegrationTests {
 
         Optional<FlashcardCategory> foundFlashcardCategory = underTest.findOne(id);
 
-        assertAll("Assert that updated flashcard category is found and matched",
+        assertAll("Assert that a created flashcard category can be updated correctly",
                 () -> assertTrue(foundFlashcardCategory.isPresent()),
                 () -> assertEquals(flashcardCategory, foundFlashcardCategory.get()));
     }
 
     @Test
-    public void testThatFlashcardCategoryCanBeCreatedAndDeleted() {
-        FlashcardCategory flashcardCategory = TestDaoUtils.createTestFlashcardCategory();
-
-        Long id = underTest.create(flashcardCategory);
-
-        flashcardCategory.setId(id);
-
-        underTest.delete(id);
-
-        Optional<FlashcardCategory> foundFlashcardCategory = underTest.findOne(id);
-
-        assertTrue(foundFlashcardCategory.isEmpty());
-    }
-
-    @Test
-    public void testThatFlashcardCanBeCreatedAndDeleted() {
-        FlashcardCategory flashcardCategory = TestDaoUtils.createTestFlashcardCategory();
-
-        Long id = underTest.create(flashcardCategory);
-
-        flashcardCategory.setId(id);
-
-        underTest.delete(id);
-
-        Optional<FlashcardCategory> foundFlashcardCategory = underTest.findOne(id);
-
-        assertTrue(foundFlashcardCategory.isEmpty());
-    }
-
-    @Test
-    public void testThatAllFlashcardCategoriesCanBeCreatedAndDeleted() {
+    public void testThatAllFlashcardCategoriesCanBeDeletedCorrectly() {
         FlashcardCategory fc1 = TestDaoUtils.createTestFlashcardCategory();
         FlashcardCategory fc2 = TestDaoUtils.createTestFlashcardCategory();
         FlashcardCategory fc3 = TestDaoUtils.createTestFlashcardCategory();
@@ -130,9 +96,24 @@ public class FlashcardCategoryDaoImplIntegrationTests {
 
         List<FlashcardCategory> flashcardCategories = underTest.findAll();
 
-        assertAll("Assert that all created flashcard categories are deleted",
+        assertAll("Assert that all flashcard categories can be deleted correctly",
                 () -> assertEquals(deletionCount, 3),
                 () -> assertTrue(flashcardCategories.isEmpty()));
+    }
+
+    @Test
+    public void testThatFlashcardCategoryCanBeDeletedCorrectly() {
+        FlashcardCategory flashcardCategory = TestDaoUtils.createTestFlashcardCategory();
+
+        Long id = underTest.create(flashcardCategory);
+
+        flashcardCategory.setId(id);
+
+        underTest.delete(id);
+
+        Optional<FlashcardCategory> foundFlashcardCategory = underTest.findOne(id);
+
+        assertTrue(foundFlashcardCategory.isEmpty());
     }
 
 }
