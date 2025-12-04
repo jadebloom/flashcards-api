@@ -6,7 +6,7 @@ spring:
     driverClassname: org.h2.Driver
     username: sa
     password: password
-  sql:
-    init:   
-      mode: always
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
       
