@@ -68,6 +68,17 @@ public class FlashcardCategoryRepositoryIntegrationTests {
     }
 
     @Test
+    public void testThatCreatedFlashcardCategoryExists() {
+        FlashcardCategoryEntity flashcardCategoryEntity = new FlashcardCategoryEntity("Kanji");
+
+        Long id = underTest.save(flashcardCategoryEntity).getId();
+
+        boolean isExists = underTest.existsById(id);
+
+        assertTrue(isExists);
+    }
+
+    @Test
     public void testThatFlashcardCategoryCanBeCreatedAndDeletedByItsId() {
         FlashcardCategoryEntity flashcardCategoryEntity = new FlashcardCategoryEntity("Kanji");
 

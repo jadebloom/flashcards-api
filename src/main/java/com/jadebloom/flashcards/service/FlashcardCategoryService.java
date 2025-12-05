@@ -15,6 +15,8 @@ public interface FlashcardCategoryService {
 
     Optional<FlashcardCategoryEntity> findById(Long id);
 
+    boolean existsById(Long id);
+
     void deleteById(Long id);
 
 }
