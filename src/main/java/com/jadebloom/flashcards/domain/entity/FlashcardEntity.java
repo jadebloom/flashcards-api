@@ -27,6 +27,15 @@ public class FlashcardEntity {
     @Column(nullable = false)
     private String backText;
 
+    public FlashcardEntity() {
+    }
+
+    public FlashcardEntity(FlashcardCategoryEntity flashcardCategoryEntity, String frontText, String backText) {
+        this.flashcardCategory = flashcardCategoryEntity;
+        this.frontText = frontText;
+        this.backText = backText;
+    }
+
     public Long getId() {
         return id;
     }

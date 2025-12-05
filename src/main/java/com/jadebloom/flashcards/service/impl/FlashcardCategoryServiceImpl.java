@@ -37,6 +37,11 @@ public class FlashcardCategoryServiceImpl implements FlashcardCategoryService {
     }
 
     @Override
+    public boolean existsById(Long id) {
+        return flashcardCategoryRepository.existsById(id);
+    }
+
+    @Override
     public void deleteById(Long id) {
         flashcardCategoryRepository.deleteById(id);
     }
